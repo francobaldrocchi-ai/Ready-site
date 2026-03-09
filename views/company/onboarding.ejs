@@ -1,0 +1,9 @@
+<%- include('../partials/header',{title:'Onboarding azienda'}) %>
+<div class="card"><h2>Completa il profilo azienda</h2><form method="post">
+<label>Nome attività</label><input name="business_name" required>
+<label>Referente</label><input name="contact_name" required>
+<label>Telefono</label><input name="phone" required>
+<label>Zona</label><input name="city_area" required>
+<label>Tipo attività</label><select name="business_type"><option>restaurant</option><option>hotel</option><option>bar</option><option>beach club</option><option>event/catering</option></select>
+<label>Descrizione</label><textarea name="description"></textarea><div class="actions"><button>Completa profilo</button></div></form></div>
+<%- include('../partials/footer') %>

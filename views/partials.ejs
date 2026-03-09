@@ -1,0 +1,16 @@
+<% function layout(title, body){ %>
+<!DOCTYPE html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title><%= title %></title><link rel="stylesheet" href="/styles.css"></head><body>
+<header class="topbar"><a href="/" class="brand">Ready</a><nav>
+<% if (currentUser) { %>
+  <% if (currentUser.role==='admin') { %><a href="/admin/leads">Admin</a><% } %>
+  <% if (currentUser.role==='worker') { %><a href="/worker/dashboard">Worker</a><% } %>
+  <% if (currentUser.role==='company') { %><a href="/company/dashboard">Azienda</a><% } %>
+  <form method="post" action="/logout" class="inline"><button>Logout</button></form>
+<% } else { %><a href="/worker-apply">Worker</a><a href="/company-apply">Aziende</a><a href="/login">Login</a><a class="btn secondary" href="/signup">Registrati</a><% } %>
+</nav></header>
+<main class="container">
+<% if (flash) { %><div class="flash <%= flash.type %>"><%= flash.message %></div><% } %>
+<%- body %>
+<div class="footer">Ready · Pre-lancio per turni urgenti hospitality a Rimini e Riviera</div>
+</main></body></html>
+<% } %>

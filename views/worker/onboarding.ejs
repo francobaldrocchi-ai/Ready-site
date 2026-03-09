@@ -1,0 +1,10 @@
+<%- include('../partials/header',{title:'Onboarding worker'}) %>
+<div class="card"><h2>Completa il tuo profilo worker</h2><form method="post">
+<label>Nome e cognome</label><input name="full_name" required>
+<label>Telefono</label><input name="phone" required>
+<label>Zona</label><input name="city_area" required>
+<label>Mezzo di trasporto</label><input name="transport_method">
+<label>Ruoli</label><div class="checks"><label class="check"><input type="checkbox" name="roles" value="waiter"> Sala</label><label class="check"><input type="checkbox" name="roles" value="runner"> Runner</label><label class="check"><input type="checkbox" name="roles" value="bar"> Bar</label><label class="check"><input type="checkbox" name="roles" value="kitchen_helper"> Aiuto cucina</label><label class="check"><input type="checkbox" name="roles" value="dishwasher"> Lavapiatti</label></div>
+<label>Anni di esperienza</label><input name="years_experience">
+<label>Bio</label><textarea name="bio"></textarea><div class="actions"><button>Completa profilo</button></div></form></div>
+<%- include('../partials/footer') %>

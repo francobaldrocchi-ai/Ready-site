@@ -1,0 +1,19 @@
+<%- include('../partials/header',{title:'Login'}) %>
+<div class="grid two">
+  <div class="card">
+    <div class="eyebrow">Accesso</div>
+    <h1>Accedi a Ready</h1>
+    <p class="muted">Entra per completare il profilo, candidarti ai turni o gestire il tuo dashboard aziendale.</p>
+    <form method="post">
+      <label>Email</label><input name="email" type="email" required>
+      <label>Password</label><input name="password" type="password" required>
+      <div class="actions"><button>Login</button><a class="btn secondary" href="/signup">Registrati</a></div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Primo accesso?</h2>
+    <p class="muted">Crea un account, scegli se sei worker o azienda e completa l’onboarding. Poi potrai entrare nella dashboard giusta.</p>
+    <div class="actions"><a class="btn" href="/signup">Crea un account</a></div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

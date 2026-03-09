@@ -1,0 +1,37 @@
+<%- include('partials/header',{title:'Worker candidatura'}) %>
+<div class="card">
+  <div class="eyebrow">Worker pre-launch</div>
+  <h1>Entra tra i primi worker Ready</h1>
+  <p class="muted">Compila il form in 2 minuti. Se il tuo profilo è in linea con le prime attivazioni di stagione, ti ricontatteremo.</p>
+  <form method="post" class="form-grid">
+    <div><label>Nome e cognome</label><input name="full_name" required></div>
+    <div><label>Telefono</label><input name="phone" required></div>
+    <div><label>Email</label><input name="email" type="email"></div>
+    <div><label>Età</label><input name="age"></div>
+    <div class="full"><label>Zona</label><input name="city_area" required placeholder="Rimini, Marina Centro, Riccione..."></div>
+    <div class="full"><label>Mezzo di trasporto</label><input name="transport_method" placeholder="Auto, scooter, bici..."></div>
+    <div class="full">
+      <label>Ruoli</label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="roles" value="waiter"> Sala</label>
+        <label class="check"><input type="checkbox" name="roles" value="runner"> Runner</label>
+        <label class="check"><input type="checkbox" name="roles" value="bar"> Bar</label>
+        <label class="check"><input type="checkbox" name="roles" value="kitchen_helper"> Aiuto cucina</label>
+        <label class="check"><input type="checkbox" name="roles" value="dishwasher"> Lavapiatti</label>
+      </div>
+    </div>
+    <div><label>Anni di esperienza</label><input name="years_experience"></div>
+    <div><label>Disponibilità</label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="availability_lunch" value="1"> Pranzo</label>
+        <label class="check"><input type="checkbox" name="availability_dinner" value="1"> Cena</label>
+        <label class="check"><input type="checkbox" name="availability_weekends" value="1"> Weekend</label>
+        <label class="check"><input type="checkbox" name="availability_last_minute" value="1"> Last minute</label>
+        <label class="check"><input type="checkbox" name="currently_employed" value="1"> Sto già lavorando</label>
+      </div>
+    </div>
+    <div class="full"><label>Note</label><textarea name="notes" placeholder="Esperienze utili, giorni preferiti, distanza massima..."></textarea></div>
+    <div class="full actions"><button>Invia candidatura</button><a class="btn ghost" href="/">Torna alla home</a></div>
+  </form>
+</div>
+<%- include('partials/footer') %>

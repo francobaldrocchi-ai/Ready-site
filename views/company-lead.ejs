@@ -1,0 +1,28 @@
+<%- include('partials/header',{title:'Aziende accesso anticipato'}) %>
+<div class="card">
+  <div class="eyebrow">Company pre-launch</div>
+  <h1>Richiedi accesso anticipato per aziende</h1>
+  <p class="muted">Ready è pensato per attività hospitality della Riviera che vogliono coprire turni urgenti in modo più rapido e ordinato.</p>
+  <form method="post" class="form-grid">
+    <div><label>Nome attività</label><input name="business_name" required></div>
+    <div><label>Referente</label><input name="contact_name" required></div>
+    <div><label>Telefono</label><input name="phone" required></div>
+    <div><label>Email</label><input name="email" type="email"></div>
+    <div><label>Zona</label><input name="city_area" required placeholder="Rimini, Marina Centro, Bellaria..."></div>
+    <div><label>Tipo attività</label><select name="business_type"><option value="restaurant">Ristorante</option><option value="hotel">Hotel</option><option value="bar">Bar</option><option value="beach club">Beach club</option><option value="event/catering">Eventi / Catering</option></select></div>
+    <div class="full">
+      <label>Ruoli cercati</label>
+      <div class="checks">
+        <label class="check"><input type="checkbox" name="roles_needed" value="waiter"> Sala</label>
+        <label class="check"><input type="checkbox" name="roles_needed" value="runner"> Runner</label>
+        <label class="check"><input type="checkbox" name="roles_needed" value="bar"> Bar</label>
+        <label class="check"><input type="checkbox" name="roles_needed" value="kitchen_helper"> Aiuto cucina</label>
+        <label class="check"><input type="checkbox" name="roles_needed" value="dishwasher"> Lavapiatti</label>
+      </div>
+    </div>
+    <div class="full"><label>Quanto spesso manca personale?</label><select name="urgency_frequency"><option value="rarely">Raramente</option><option value="sometimes">Ogni tanto</option><option value="often">Spesso</option></select></div>
+    <div class="full"><label>Note</label><textarea name="notes" placeholder="Numero persone, orari critici, reparti coinvolti..."></textarea></div>
+    <div class="full actions"><button>Invia richiesta</button><a class="btn ghost" href="/">Torna alla home</a></div>
+  </form>
+</div>
+<%- include('partials/footer') %>

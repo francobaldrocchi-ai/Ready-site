@@ -1,0 +1,58 @@
+<%- include('../partials/header',{title:'Admin leads'}) %>
+<div class="card">
+  <div class="section-title">
+    <div>
+      <div class="eyebrow">Admin</div>
+      <h1>Lead pipeline</h1>
+      <p class="muted">Gestisci worker e aziende che stanno entrando in Ready prima del lancio.</p>
+    </div>
+  </div>
+</div>
+<div class="spacer"></div>
+<div class="grid two">
+  <div class="card">
+    <h2>Worker leads</h2>
+    <% if(!workerLeads.length){ %><div class="empty">Nessun worker lead ancora registrato.</div><% } else { %>
+    <div class="table-wrap"><table>
+      <tr><th>Profilo</th><th>Zona</th><th>Stato</th><th>Azione</th></tr>
+      <% workerLeads.forEach(l=>{ %>
+      <tr>
+        <td><strong><%= l.full_name %></strong><div class="small muted"><%= l.phone %> · <%= l.email %></div></td>
+        <td><%= l.city_area %></td>
+        <td><span class="status-pill <%= l.status %>"><%= l.status %></span></td>
+        <td>
+          <form method="post" action="/admin/leads/worker/<%= l.id %>/status">
+            <select name="status"><option <%= l.status==='new_lead'?'selected':'' %>>new_lead</option><option <%= l.status==='pending_review'?'selected':'' %>>pending_review</option><option <%= l.status==='qualified'?'selected':'' %>>qualified</option><option <%= l.status==='ready'?'selected':'' %>>ready</option><option <%= l.status==='inactive'?'selected':'' %>>inactive</option><option <%= l.status==='rejected'?'selected':'' %>>rejected</option></select>
+            <label class="small">Note interne</label>
+            <textarea name="admin_notes"><%= l.admin_notes %></textarea>
+            <div class="actions"><button>Salva</button></div>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table></div><% } %>
+  </div>
+  <div class="card">
+    <h2>Company leads</h2>
+    <% if(!companyLeads.length){ %><div class="empty">Nessuna azienda ancora registrata.</div><% } else { %>
+    <div class="table-wrap"><table>
+      <tr><th>Azienda</th><th>Zona</th><th>Stato</th><th>Azione</th></tr>
+      <% companyLeads.forEach(l=>{ %>
+      <tr>
+        <td><strong><%= l.business_name %></strong><div class="small muted"><%= l.contact_name %> · <%= l.phone %></div></td>
+        <td><%= l.city_area %></td>
+        <td><span class="status-pill <%= l.status %>"><%= l.status %></span></td>
+        <td>
+          <form method="post" action="/admin/leads/company/<%= l.id %>/status">
+            <select name="status"><option <%= l.status==='new_lead'?'selected':'' %>>new_lead</option><option <%= l.status==='pending_review'?'selected':'' %>>pending_review</option><option <%= l.status==='qualified'?'selected':'' %>>qualified</option><option <%= l.status==='ready'?'selected':'' %>>ready</option><option <%= l.status==='inactive'?'selected':'' %>>inactive</option><option <%= l.status==='rejected'?'selected':'' %>>rejected</option></select>
+            <label class="small">Note interne</label>
+            <textarea name="admin_notes"><%= l.admin_notes %></textarea>
+            <div class="actions"><button>Salva</button></div>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table></div><% } %>
+  </div>
+</div>
+<%- include('../partials/footer') %>

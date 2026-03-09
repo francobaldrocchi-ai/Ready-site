@@ -1,0 +1,22 @@
+<%- include('../partials/header',{title:'Registrazione azienda'}) %>
+<div class="grid two">
+  <div class="card">
+    <div class="eyebrow">Percorso azienda</div>
+    <h1>Crea il tuo account azienda</h1>
+    <p class="muted">Dopo la registrazione entrerai nel lead azienda e potrai preparare la tua attività a usare Ready.</p>
+    <form method="post" action="/register/company">
+      <label>Email</label><input name="email" type="email" required>
+      <label>Password</label><input name="password" type="password" minlength="8" required>
+      <div class="actions"><button>Registrati come azienda</button><a class="btn secondary" href="/login">Ho già un account</a></div>
+    </form>
+  </div>
+  <div class="card">
+    <h2>Cosa succede dopo</h2>
+    <div class="list">
+      <div class="item"><strong>1. Entri nel lead azienda</strong><div class="small muted">La tua attività entra già nel sistema lead corretto</div></div>
+      <div class="item"><strong>2. Completi l’onboarding</strong><div class="small muted">Dati azienda, contatto e business type</div></div>
+      <div class="item"><strong>3. Accedi alla dashboard azienda</strong><div class="small muted">Turni, candidature, storico e recensioni</div></div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

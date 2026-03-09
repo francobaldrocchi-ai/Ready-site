@@ -1,0 +1,10 @@
+<%- include('../partials/header',{title:'Nuovo turno'}) %>
+<div class="card"><h2>Pubblica turno</h2><form method="post">
+<label>Titolo</label><input name="title" required>
+<label>Ruolo richiesto</label><input name="role_needed" required>
+<label>Luogo</label><input name="location" required>
+<label>Data</label><input type="date" name="shift_date" required>
+<div class="grid two"><div><label>Ora inizio</label><input type="time" name="start_time" required></div><div><label>Ora fine</label><input type="time" name="end_time" required></div></div>
+<label>Paga (€)</label><input type="number" step="0.01" name="pay_eur" required>
+<label>Note</label><textarea name="notes"></textarea><div class="actions"><button>Pubblica turno</button></div></form></div>
+<%- include('../partials/footer') %>

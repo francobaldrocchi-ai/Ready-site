@@ -1,0 +1,3 @@
+<%- include('../partials/header',{title:'Profilo worker'}) %>
+<div class="card"><h2><%= worker.full_name %></h2><p class="muted"><%= worker.city_area %> · <%= worker.roles %></p><p><%= worker.bio || '' %></p><p>Rating medio: <%= worker.avg_rating %> / 5</p><div class="list"><% reviews.forEach(r=>{ %><div class="item"><strong><%= r.stars %>/5</strong><div class="small muted"><%= r.reviewer_email %></div><p><%= r.comment %></p></div><% }) %></div></div>
+<%- include('../partials/footer') %>
