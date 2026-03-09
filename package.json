@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "node server.js",
+    "postinstall": "npm rebuild better-sqlite3",
     "start": "NODE_ENV=production node server.js",
     "bootstrap:admin": "node scripts/bootstrap-admin.js"
   },
