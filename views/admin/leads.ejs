@@ -1,58 +1,116 @@
-<%- include('../partials/header',{title:'Admin leads'}) %>
+<%- include('../partials/header',{title:'Admin'}) %>
 <div class="card">
   <div class="section-title">
     <div>
       <div class="eyebrow">Admin</div>
-      <h1>Lead pipeline</h1>
-      <p class="muted">Gestisci worker e aziende che stanno entrando in Ready prima del lancio.</p>
+      <h1>Utenti e lead Ready</h1>
+      <p class="muted">Vista operativa per monitorare registrazioni, onboarding e lead piu recenti.</p>
     </div>
   </div>
 </div>
+
 <div class="spacer"></div>
+
+<div class="card">
+  <form method="get" class="form-grid">
+    <div>
+      <label>Filtro ruolo utente</label>
+      <select name="role">
+        <option value="all" <%= roleFilter === 'all' ? 'selected' : '' %>>Tutti</option>
+        <option value="admin" <%= roleFilter === 'admin' ? 'selected' : '' %>>Admin</option>
+        <option value="worker" <%= roleFilter === 'worker' ? 'selected' : '' %>>Worker</option>
+        <option value="company" <%= roleFilter === 'company' ? 'selected' : '' %>>Company</option>
+      </select>
+    </div>
+    <div>
+      <label>Filtro tipo lead</label>
+      <select name="type">
+        <option value="all" <%= typeFilter === 'all' ? 'selected' : '' %>>Tutti</option>
+        <option value="worker" <%= typeFilter === 'worker' ? 'selected' : '' %>>Worker</option>
+        <option value="company" <%= typeFilter === 'company' ? 'selected' : '' %>>Company</option>
+      </select>
+    </div>
+    <div class="full actions">
+      <button>Applica filtri</button>
+      <a class="btn secondary" href="/admin/leads">Reset</a>
+    </div>
+  </form>
+</div>
+
+<div class="spacer"></div>
+
 <div class="grid two">
   <div class="card">
-    <h2>Worker leads</h2>
-    <% if(!workerLeads.length){ %><div class="empty">Nessun worker lead ancora registrato.</div><% } else { %>
-    <div class="table-wrap"><table>
-      <tr><th>Profilo</th><th>Zona</th><th>Stato</th><th>Azione</th></tr>
-      <% workerLeads.forEach(l=>{ %>
-      <tr>
-        <td><strong><%= l.full_name %></strong><div class="small muted"><%= l.phone %> Â· <%= l.email %></div></td>
-        <td><%= l.city_area %></td>
-        <td><span class="status-pill <%= l.status %>"><%= l.status %></span></td>
-        <td>
-          <form method="post" action="/admin/leads/worker/<%= l.id %>/status">
-            <select name="status"><option <%= l.status==='new_lead'?'selected':'' %>>new_lead</option><option <%= l.status==='pending_review'?'selected':'' %>>pending_review</option><option <%= l.status==='qualified'?'selected':'' %>>qualified</option><option <%= l.status==='ready'?'selected':'' %>>ready</option><option <%= l.status==='inactive'?'selected':'' %>>inactive</option><option <%= l.status==='rejected'?'selected':'' %>>rejected</option></select>
-            <label class="small">Note interne</label>
-            <textarea name="admin_notes"><%= l.admin_notes %></textarea>
-            <div class="actions"><button>Salva</button></div>
-          </form>
-        </td>
-      </tr>
-      <% }) %>
-    </table></div><% } %>
+    <h2>Utenti registrati</h2>
+    <% if (!users.length) { %>
+      <div class="empty">Nessun utente registrato con i filtri attuali.</div>
+    <% } else { %>
+      <div class="table-wrap">
+        <table>
+          <tr>
+            <th>Utente</th>
+            <th>Ruolo</th>
+            <th>Stato</th>
+            <th>Onboarding</th>
+          </tr>
+          <% users.forEach((user) => { %>
+            <tr>
+              <td>
+                <strong><%= user.display_name || user.email %></strong>
+                <div class="small muted"><%= user.email %></div>
+                <% if (user.phone || user.city || user.secondary_label) { %>
+                  <div class="small muted"><%= user.phone || '-' %> · <%= user.city || '-' %> · <%= user.secondary_label || '-' %></div>
+                <% } %>
+              </td>
+              <td><span class="badge"><%= user.role %></span></td>
+              <td><span class="badge"><%= user.status %></span></td>
+              <td><%= Number(user.profile_onboarding_completed || user.onboarding_complete || 0) ? 'completo' : 'da completare' %></td>
+            </tr>
+          <% }) %>
+        </table>
+      </div>
+    <% } %>
   </div>
+
   <div class="card">
-    <h2>Company leads</h2>
-    <% if(!companyLeads.length){ %><div class="empty">Nessuna azienda ancora registrata.</div><% } else { %>
-    <div class="table-wrap"><table>
-      <tr><th>Azienda</th><th>Zona</th><th>Stato</th><th>Azione</th></tr>
-      <% companyLeads.forEach(l=>{ %>
-      <tr>
-        <td><strong><%= l.business_name %></strong><div class="small muted"><%= l.contact_name %> Â· <%= l.phone %></div></td>
-        <td><%= l.city_area %></td>
-        <td><span class="status-pill <%= l.status %>"><%= l.status %></span></td>
-        <td>
-          <form method="post" action="/admin/leads/company/<%= l.id %>/status">
-            <select name="status"><option <%= l.status==='new_lead'?'selected':'' %>>new_lead</option><option <%= l.status==='pending_review'?'selected':'' %>>pending_review</option><option <%= l.status==='qualified'?'selected':'' %>>qualified</option><option <%= l.status==='ready'?'selected':'' %>>ready</option><option <%= l.status==='inactive'?'selected':'' %>>inactive</option><option <%= l.status==='rejected'?'selected':'' %>>rejected</option></select>
-            <label class="small">Note interne</label>
-            <textarea name="admin_notes"><%= l.admin_notes %></textarea>
-            <div class="actions"><button>Salva</button></div>
-          </form>
-        </td>
-      </tr>
-      <% }) %>
-    </table></div><% } %>
+    <h2>Leads</h2>
+    <% if (!leads.length) { %>
+      <div class="empty">Nessun lead con i filtri attuali.</div>
+    <% } else { %>
+      <div class="list">
+        <% leads.forEach((lead) => { %>
+          <div class="item">
+            <div class="section-title">
+              <div>
+                <strong><%= lead.display_name || lead.email %></strong>
+                <div class="small muted"><%= lead.type %> · <%= lead.email %></div>
+                <div class="small muted"><%= lead.phone || '-' %> · <%= lead.city || '-' %> · source: <%= lead.source %></div>
+                <% if (lead.contact_name) { %>
+                  <div class="small muted">Contatto: <%= lead.contact_name %></div>
+                <% } %>
+              </div>
+              <span class="status-pill <%= lead.status %>"><%= lead.status %></span>
+            </div>
+            <% if (lead.notes) { %>
+              <p><%= lead.notes %></p>
+            <% } %>
+            <form method="post" action="/admin/leads/<%= lead.type %>/<%= lead.id %>/status">
+              <label>Stato</label>
+              <select name="status">
+                <% leadStatusOptions.forEach((status) => { %>
+                  <option value="<%= status %>" <%= lead.status === status ? 'selected' : '' %>><%= status %></option>
+                <% }) %>
+              </select>
+              <label>Note interne</label>
+              <textarea name="admin_notes"><%= lead.admin_notes || '' %></textarea>
+              <div class="actions">
+                <button>Salva</button>
+              </div>
+            </form>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
   </div>
 </div>
 <%- include('../partials/footer') %>

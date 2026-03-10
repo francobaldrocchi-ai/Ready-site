@@ -1,9 +1,32 @@
 <%- include('../partials/header',{title:'Onboarding azienda'}) %>
-<div class="card"><h2>Completa il profilo azienda</h2><form method="post">
-<label>Nome attività</label><input name="business_name" required>
-<label>Referente</label><input name="contact_name" required>
-<label>Telefono</label><input name="phone" required>
-<label>Zona</label><input name="city_area" required>
-<label>Tipo attività</label><select name="business_type"><option>restaurant</option><option>hotel</option><option>bar</option><option>beach club</option><option>event/catering</option></select>
-<label>Descrizione</label><textarea name="description"></textarea><div class="actions"><button>Completa profilo</button></div></form></div>
+<div class="card">
+  <h2>Completa il profilo azienda</h2>
+  <form method="post">
+    <label>Nome attivita</label>
+    <input name="business_name" value="<%= profile.business_name || '' %>" required>
+
+    <label>Referente</label>
+    <input name="contact_name" value="<%= profile.contact_name || '' %>" required>
+
+    <label>Telefono</label>
+    <input name="phone" value="<%= profile.phone || '' %>" required>
+
+    <label>Zona</label>
+    <input name="city_area" value="<%= profile.city_area || '' %>" required>
+
+    <label>Tipo attivita</label>
+    <select name="business_type">
+      <% ['restaurant', 'hotel', 'bar', 'beach club', 'event/catering'].forEach((option) => { %>
+        <option value="<%= option %>" <%= profile.business_type === option ? 'selected' : '' %>><%= option %></option>
+      <% }) %>
+    </select>
+
+    <label>Descrizione</label>
+    <textarea name="description"><%= profile.description || '' %></textarea>
+
+    <div class="actions">
+      <button>Completa profilo</button>
+    </div>
+  </form>
+</div>
 <%- include('../partials/footer') %>

@@ -4,5 +4,7 @@ node_modules/
 !.env.example
 db/*.sqlite*
 db/*.db*
+data/*.sqlite*
+data/*.db*
 .git
 npm-debug.log
